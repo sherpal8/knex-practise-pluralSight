@@ -1,16 +1,23 @@
-const cfg = require("./knex-config.js").pg; // alternative, require('').sqlite for sqlite3 db
+"use strict";
+
+const cfg = require("./knex-config.js").sqlite; // alternatively, require('').sqlite
+const { clearTerminalScreen, write } = require("./screen");
 
 // create instance of knex library
 const knex = require("knex")(cfg); // creates a single instance that allows a pool of 1-10 connections (to increase efficiency)
-knex
-  .select("title", "rating")
-  .from("book")
-  .asCallback(function(err, rows) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(rows);
-    }
-    knex.destroy();
-    console.log("Done");
-  });
+
+clearTerminalScreen();
+
+const query = knex.select("title", "rating").from("book");
+const sqlQueryInfo = query.toSQL();
+write(sqlQueryInfo);
+
+query.asCallback(function(err, rows) {
+  if (err) {
+    console.log(err);
+  } else {
+    write(rows, "pretty" || "json");
+  }
+  knex.destroy();
+  console.log("Done");
+});

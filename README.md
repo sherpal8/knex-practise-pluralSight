@@ -12,4 +12,7 @@ treeize: Familiarised myself the use of treeize to create a object/tree data str
 
 Promise.all: Used instead of treeize to create the desired object/tree data structure. Also, to improve efficiency of query.
 
-Also, there was the use of of config file and .gitignore.
+transaction(): Used knex.transaction() to allow for a migrate or rollback - depending on when the whole transaction is successful is not.
+
+Use of config files and .gitignore.
+

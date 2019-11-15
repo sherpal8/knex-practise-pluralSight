@@ -2,34 +2,34 @@
 
 const cfg = require("./knex-config").pg; // alternatively, require('').sqlite
 const { clearTerminalScreen, write } = require("./screen");
-const Treeize = require("treeize");
 
 // create instance of knex library, with pool of 1-10 connections
 const knex = require("knex")(cfg);
 
 clearTerminalScreen();
 
-const query = knex
+const promiseAuthorRows = knex
+  .select("firstname", "lastname")
+  .from("author")
+  .where("id", 1)
+  .debug(false);
+
+const promiseBookRows = knex
   .select(
-    "book.title as books:title",
-    "book.rating as books:rating",
-    "book.title as books:title",
-    "author.firstname",
-    "author.lastname"
+    "title as books:title",
+    "rating as books:rating",
+    "title as books:title"
   )
   .from("book")
-  .join("author", "author.id", "book.author_id")
+  .where("author_id", 1)
   .debug(false);
-// const sqlQueryInfo = query.toSQL(); // alternative: `debug:true` in knex-config.js
-// write(sqlQueryInfo);
 
-query
-  .then(function(rows) {
-    const tree = new Treeize();
-    tree.grow(rows);
-    const authors = tree.getData();
+Promise.all([promiseAuthorRows, promiseBookRows])
+  .then(function(results) {
+    const authors = results[0][0];
+    authors.books = results[1];
     write("Success!");
-    write(authors, "pretty" || "json");
+    write(authors, "json" || "pretty");
   })
   .catch(function(error) {
     write("Whoops!");

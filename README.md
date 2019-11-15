@@ -8,6 +8,8 @@ postgreSQL: Created identical database & schema in PQ. PSQL used to populate sch
 
 prettyjson: Utilised improve the appearance of the data on the terminal.
 
-treeize: Used to immprove structure of data presented on the terminal.
+treeize: Familiarised myself the use of treeize to create a object/tree data structure.
+
+Promise.all: Used instead of treeize to create the desired object/tree data structure. Also, to improve efficiency of query.
 
 Use of config files and .gitignore.

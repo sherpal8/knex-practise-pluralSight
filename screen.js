@@ -1,6 +1,6 @@
 const prettyjson = require("prettyjson");
 
-const screen = {
+module.exports = {
   clearTerminalScreen: function() {
     process.stdout.write("\033c");
   },
@@ -20,5 +20,3 @@ const screen = {
     console.log(output);
   }
 };
-
-module.exports = screen;

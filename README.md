@@ -12,4 +12,4 @@ treeize: Familiarised myself the use of treeize to create a object/tree data str
 
 Promise.all: Used instead of treeize to create the desired object/tree data structure. Also, to improve efficiency of query.
 
-Use of config files and .gitignore.
+Also, there was the use of of config file and .gitignore.

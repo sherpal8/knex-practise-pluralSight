@@ -59,9 +59,8 @@ knex
         return trx.insert(booksArr).into("book");
       });
   })
-  .then(function(inserts) {
-    console.log(inserts.rowCount);
-    write(inserts.rowCount + " new books added");
+  .then(function({ rowCount }) {
+    write(rowCount + " new books added");
   })
   .catch(function(err) {
     console.log(err);

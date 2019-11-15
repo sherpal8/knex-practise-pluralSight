@@ -15,3 +15,4 @@ Promise.all: Used instead of treeize to create the desired object/tree data stru
 transaction(): Used knex.transaction() to allow for a migrate or rollback - depending on when the whole transaction is successful is not.
 
 Use of config files and .gitignore.
+

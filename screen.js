@@ -7,7 +7,7 @@ module.exports = {
   write: function(data, mode) {
     let output = data;
     if (mode === "json") {
-      output = JSON.stringify(data, null, 4);
+      output = JSON.stringify(output, null, 4);
     } else if (mode === "pretty") {
       let prettyOptions = {
         keysColor: "cyan",
@@ -15,7 +15,7 @@ module.exports = {
         stringColor: "white",
         numberColor: "yellow"
       };
-      output = prettyjson.render(data, prettyOptions);
+      output = prettyjson.render(output, prettyOptions);
     }
     console.log(output);
   }
